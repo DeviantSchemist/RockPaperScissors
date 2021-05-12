@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    // Possible choices user can choose from
+    let choices = ['r', 'p', 's']
+
+    // variables for random number
+    let min = Math.ceil(0), max = Math.floor(2)
+
+    // variables for keeping score
+    let playerScore = 0, computerScore = 0, ties = 0
+
+    // used to continue the game
+    let reset = 0
+
+    // main game loop, will continue running if user wants to keep playing
+    do {
+      // game will run for 10 rounds
+      for (let i = 0; i < 10; i++) {
+        // getting user input
+        let input = prompt('Enter r, p, or s: ')
+        // random number generator
+        let random = Math.floor(Math.random() * (max - min + 1) + min)
+        // consolidates the user's choice and the computer's choice
+        let result = input + choices[random]
+        // checks all possible win/lose/tie conditions
+        switch (result) {
+          case 'rr':
+            ties++
+            alert('Both are rock, tie.')
+            break
+          case 'rp':
+            computerScore++
+            alert('Computer wins!')
+            break
+          case 'rs':
+            playerScore++
+            alert('You win!')
+            break
+          case 'pr':
+            playerScore++
+            alert('You win!')
+            break
+          case 'pp':
+            ties++
+            alert('Both are paper, tie.')
+            break
+          case 'ps':
+            computerScore++
+            alert('Computer wins!')
+            break
+          case 'sr':
+            computerScore++
+            alert('Computer wins!')
+            break
+          case 'sp':
+            playerScore++
+            alert('You win!')
+            break
+          case 'ss':
+            ties++
+            alert('Both are scissors, tie.')
+            break
+          default:
+            // input validation
+            alert('Invalid input. Enter again.')
+            i--
+        }
+      } // end of for loop
+
+      // displays results at the end of the game
+      alert(`Results: \n Player: ${playerScore} \n Computer: ${computerScore} \n Ties: ${ties}`)
+
+      // prompts user to decide if they want to keep playing or not
+      reset = parseInt(prompt('Play again? 1 for yes, 2 for no: '))
+    } while (reset ===  1)
+  </script>
+</body>
+</html>
